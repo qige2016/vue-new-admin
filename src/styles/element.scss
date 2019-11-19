@@ -1,0 +1,161 @@
+@import "~@/styles/variables.scss";
+.menu-wrapper {
+  .horizontal-collapse-transition {
+    transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
+  }
+  transition: width .28s;
+  width: $menuWidth !important;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $menuBg;
+  box-shadow: 2px 0 6px rgba(0,21,41,.35);
+  // 如果没有此样式的话  折叠有子级菜单的父菜单文字是不会隐藏的
+  .el-menu--collapse .el-menu-item span,
+    .el-menu--collapse .el-submenu .el-submenu__title span,
+      .el-menu--collapse .el-submenu__icon-arrow{
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    visibility: hidden;
+    display: inline-block;
+    }
+  .el-menu {
+    border: none;
+    width: 100% !important;
+    .el-menu-item.is-active  {
+      color: $menuActiveText !important;
+      background-color: $menuActiveBg !important;
+      .iconfont{
+        color: $menuActiveText;
+      }
+    }
+  }
+  .el-menu-item.is-active {
+    color: $menuActiveText !important;
+    background-color: $menuActiveBg !important;
+    .iconfont{
+      color: $menuActiveText;
+    }
+  }
+  i {
+    margin-right: 10px;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+  .el-submenu .el-menu-item {
+    min-width: $menuWidth !important;
+    background-color: $subMenuBg !important;
+  }
+}
+.main {
+  transition: margin-left .28s;
+  margin-left: $menuWidth;
+}
+.is-collapse {
+  .menu-wrapper {
+    width: 64px !important;
+  }
+  .main {
+    margin-left: 64px;
+  }
+}
+.breadcrumb-wrapper {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 50px;
+  margin-left: 10px;
+}
+
+.login-form {
+  .el-input {
+    .el-input__inner {
+      border: none;
+      border-bottom: 1px solid #E5E7ED;
+    }
+  }
+}
+
+.page-wrapper {
+  flex-grow: 1;
+  border: 35px solid #f0f2f5;
+  .base-info {
+    padding: 10px;
+    font-weight: 600;
+    text-align: left;
+  }
+  .search-form {
+    padding: 50px 20px 10px;
+    border-bottom: 10px solid #f0f2f5;
+    .el-form .el-form-item {
+      margin-bottom: 39px;
+      .el-form-item__label {
+        padding-left: 30px;
+      }
+    }
+  }
+  .data-table {
+    padding: 28px 20px;
+  }
+}
+
+.el-pagination {
+  text-align: right;
+  margin: 16px;
+}
+.el-table thead>tr>th {
+  color: #444851;
+  font-weight: 600;
+  text-align: left;
+  background: #E5E7ED;
+}
+// 自定义 行高
+.el-table .el-table__row td{
+  padding: 7px 0;
+}
+.el-table .el-button {
+  padding: 7px;
+}
+
+.el-dialog {
+  .el-dialog__header {
+    padding: 16px 46px;
+    border-radius: 4px 4px 0 0;
+  }
+  .el-dialog__title {
+    font-weight: 600;
+  }
+  .el-dialog__body {
+    padding: 0 46px 16px 46px;
+  }
+  .el-dialog__footer {
+    padding: 20px 30px;
+    border-radius: 0 0 4px 4px;
+  }
+}
+
+.el-form .el-form-item {
+  margin-bottom: 18px;
+}
+.el-form-item .el-select .el-input__inner {
+  padding-right: 30px;
+}
+.el-form {
+  .el-select {
+    width: 100%;
+  }
+  .el-input-number {
+    width: 100%;
+  }
+  .el-date-editor {
+    width: 100% !important;
+    .el-range-separator,
+    .el-range__icon,
+    .el-range__close-icon {
+      line-height: 26px;
+    }
+  }
+}
