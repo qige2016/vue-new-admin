@@ -3898,10 +3898,10 @@ elegant-spinner@^1.0.1:
   resolved "https://registry.npm.taobao.org/elegant-spinner/download/elegant-spinner-1.0.1.tgz#db043521c95d7e303fd8f345bedc3349cfb0729e"
   integrity sha1-2wQ1IcldfjA/2PNFvtwzSc+wcp4=
 
-element-theme-chalk@2.12.0:
-  version "2.12.0"
-  resolved "https://registry.npm.taobao.org/element-theme-chalk/download/element-theme-chalk-2.12.0.tgz#13a1a5d1bf74c0c75424a02b1ce66777185348d2"
-  integrity sha1-E6Gl0b90wMdUJKArHOZndxhTSNI=
+element-theme-chalk@2.13.0:
+  version "2.13.0"
+  resolved "https://registry.npm.taobao.org/element-theme-chalk/download/element-theme-chalk-2.13.0.tgz#2ee1aea38c31a37df55886001021a054b076b356"
+  integrity sha1-LuGuo4wxo331WIYAECGgVLB2s1Y=
 
 element-ui@2.12.0:
   version "2.12.0"
