@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "element-theme": "et",
-    "serve": "element-theme && vue-cli-service serve",
-    "build": "element-theme && vue-cli-service build",
+    "serve": "npm run element-theme && vue-cli-service serve",
+    "build": "npm run element-theme && vue-cli-service build",
     "start": "npm run serve",
-    "report": "element-theme && vue-cli-service build --report",
+    "report": "npm run element-theme && vue-cli-service build --report",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml",
