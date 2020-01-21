@@ -21,3 +21,10 @@ export function getOperatorSelf() {
     url: '/v0/operators/self'
   })
 }
+// 查询管理员
+export function getOperator(params) {
+  return request({
+    url: '/v0/operators',
+    params
+  })
+}

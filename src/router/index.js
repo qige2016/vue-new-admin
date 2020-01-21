@@ -47,8 +47,7 @@ export const asyncRoutes = [
     redirect: '/permission/super',
     component: Layout,
     meta: {
-      title: '权限测试',
-      icon: 'iconfont icon-home-index'
+      title: '权限测试'
     },
     children: [
       {
@@ -76,6 +75,24 @@ export const asyncRoutes = [
         meta: {
           title: '所有权限'
           // roles: ['SUPER', 'SUPER_MGR'] // if do not set roles, means: this page does not require permission
+        }
+      }
+    ]
+  },
+  {
+    path: '',
+    redirect: '/operator',
+    component: Layout,
+    meta: {
+      title: '用户管理'
+    },
+    children: [
+      {
+        path: '/operator',
+        name: 'operator',
+        component: () => import('@/views/operator'),
+        meta: {
+          roles: ['SUPER']
         }
       }
     ]

@@ -1,27 +1,11 @@
 import { getPropByPath } from '@/utils'
 import dayjs from 'dayjs'
 const filedMap = {
-  type: {
-    MONEY: '金额',
-    RATE: '比例'
-  },
-  gender: {
-    MALE: '男',
-    FEMALE: '女',
-    UNKNOWN: '未知'
-  },
-  status: {
-    NORMAL: '正常',
-    DISABLE: '禁用',
-    TOBE_PAID: '待支付',
-    PAID: '已支付',
-    EXPIRED: '已过期'
+  roleType: {
+    SUPER: '超级管理员',
+    SUPER_MGR: '管理员'
   },
   registerTime: val => {
-    if (!val) return
-    return dayjs(val).format('YYYY-MM-DD HH:mm:ss')
-  },
-  orderTime: val => {
     if (!val) return
     return dayjs(val).format('YYYY-MM-DD HH:mm:ss')
   }
