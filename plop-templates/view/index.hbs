@@ -1,0 +1,186 @@
+{{#if search}}
+<template>
+  <div class="page-wrapper">
+    <Form
+      class="search-form"
+      :form="form"
+      :form-items="formItems"
+      :inline="true"
+      :buttons="buttons"
+    />
+    <Table
+      :loading="tableLoading"
+      :data="data"
+      :total="total"
+      :columns="columns"
+      :pagination="pagination"
+      @pagination-change="handlePageChange"
+    />
+    {{#if detail}}
+    <{{ properCase name }}Detail
+      :outer-visible.sync="detailVisible"
+      :uuid="uuid"
+    />
+    {{/if}}
+    {{#if addEdit}}
+    <{{ properCase name }}AddEdit
+      :type="type"
+      :outer-visible.sync="addEditVisible"
+      :form="addEditForm"
+      @refresh="refresh"
+    />
+    {{/if}}
+  </div>
+</template>
+
+<script>
+{{#if formatter}}
+import formatter from '@/utils/format'
+{{/if}}
+{{#if search}}
+import { get{{ properCase name }}{{#if delete}}, delete{{ properCase name }}{{/if}} } from '@/api/{{ name }}'
+import Form from '@/components/Form'
+import Table from '@/components/Table'
+{{/if}}
+{{#if detail}}
+import {{ properCase name }}Detail from './components/{{ properCase name }}Detail'
+{{/if}}
+{{#if addEdit}}
+import {{ properCase name }}AddEdit from './components/{{ properCase name }}AddEdit'
+{{/if}}
+export default {
+  name: '{{ properCase name }}',
+  components: { {{#if search}}Form, Table{{/if}}{{#if detail}}, {{ properCase name }}Detail{{/if}}{{#if addEdit}}, {{ properCase name }}AddEdit{{/if}} },
+  data() {
+    return {
+      {{#if search}}
+      form: {},
+      formItems: [],
+      buttons: [
+        {
+          label: '查询',
+          type: 'primary',
+          icon: 'el-icon-search',
+          click: this.searchSubmit
+        },
+        {
+          label: '重置',
+          type: 'info',
+          icon: 'el-icon-refresh-right',
+          click: this.reset
+        }{{#if addEdit}},
+        {
+          label: '新增',
+          type: 'success',
+          icon: 'el-icon-plus',
+          click: this.handleAdd
+        }{{/if}}
+      ],
+      tableLoading: false,
+      data: [],
+      {{#orConditon detail addEdit delete}}
+      columns: [
+        {
+          label: '操作',
+          width: '200px',
+          buttons: [{{#if detail}}
+            {
+              type: 'text',
+              label: '详情',
+              click: this.handleDetail
+            }{{/if}}{{#if detail}}{{#if addEdit}},{{/if}}{{/if}}{{#if addEdit}}
+            {
+              type: 'text',
+              label: '编辑',
+              click: this.handleEdit
+            }{{/if}}{{#andOrConditon detail addEdit delete}},{{/andOrConditon}}{{#if delete}}
+            {
+              type: 'text',
+              label: '删除',
+              click: this.handleDelete
+            }{{/if}}
+          ]
+        }
+      ],
+      {{/orConditon}}
+      pagination: {
+        currentPage: 1,
+        pageSize: 10
+      },
+      total: 0{{/if}}{{#if addEdit}},
+      type: '',
+      addEditVisible: false,
+      addEditForm: {}{{/if}}{{#if detail}},
+      detailVisible: '',
+      uuid: ''{{/if}}
+    }
+  },
+  {{#if search}}
+  created() {
+    this.handle{{ properCase name }}()
+  },
+  methods: {
+    handlePageChange({ type, val }) {
+      this.pagination[type] = val
+      type === 'pageSize' && (this.pagination.currentPage = 1)
+      this.handle{{ properCase name }}()
+    },
+    handle{{ properCase name }}() {
+      this.tableLoading = true
+      const params = { ...this.form, ...this.pagination }
+      get{{ properCase name }}(params)
+        .then(res => {
+          this.tableLoading = false
+          this.data = res.{{ dataName }} || []
+          this.total = res.totalCount || 0
+        })
+        .catch(() => {
+          this.tableLoading = false
+        })
+    },
+    searchSubmit() {
+      this.pagination.currentPage = 1
+      this.handle{{ properCase name }}()
+    },
+    reset() {
+      this.form = {}
+    }{{#if detail}},
+    handleDetail(row) {
+      this.uuid = row.{{ uuid }}
+      this.detailVisible = true
+    }{{/if}}{{#if addEdit}},
+    refresh() {
+      this.addEditVisible = false
+      this.handle{{ properCase name }}()
+    },
+    handleAdd() {
+      this.addEditVisible = true
+      this.type = 'add'
+    },
+    handleEdit(row) {
+      this.addEditVisible = true
+      this.type = 'edit'
+      this.addEditForm = row
+    }{{/if}}{{#if delete}},
+    handleDelete(row) {
+      this.$confirm('确定删除吗？', {
+        type: 'warning',
+        showClose: false,
+        closeOnClickModal: false
+      })
+        .then(() => {
+          delete{{ properCase name }}(row.{{ uuid }}).then(() => {
+            this.$message({
+              type: 'success',
+              message: '删除成功'
+            })
+            // 刷新列表
+            this.handle{{ properCase name }}()
+          })
+        })
+        .catch(err => console.log(err))
+    }{{/if}}
+  }{{/if}}
+}
+</script>
+ {{/if}}

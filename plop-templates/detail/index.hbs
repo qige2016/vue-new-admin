@@ -1,0 +1,65 @@
+{{#if detail}}
+<template>
+  <Dialog
+    :outer-visible="outerVisible"
+    title="详情"
+    width="650px"
+    v-on="$listeners"
+    @outerOpen="outerOpen"
+  >
+    <Form
+      v-loading="loading"
+      :form="form"
+      :form-items="formItems"
+      :two-columns="true"
+    />
+  </Dialog>
+</template>
+
+<script>
+{{#if formatter}}
+import formatter from '@/utils/format'
+{{/if}}
+import { get{{ properCase name }} } from '@/api/{{ name }}'
+import Dialog from '@/components/Dialog'
+import Form from '@/components/Form'
+export default {
+  name: '{{ properCase name }}Detail',
+  components: { Dialog, Form },
+  props: {
+    outerVisible: {
+      type: Boolean,
+      required: true
+    },
+    uuid: {
+      type: String,
+      required: true
+    }
+  },
+  data() {
+    return {
+      loading: false,
+      form: {},
+      formItems: []
+    }
+  },
+  methods: {
+    outerOpen() {
+      this.handle{{ properCase name }}Detail()
+    },
+    handle{{ properCase name }}Detail() {
+      this.loading = true
+      const uuid = this.uuid
+      get{{ properCase name }}(uuid)
+        .then(res => {
+          this.loading = false
+          this.form = res.{{ dataName }}
+        })
+        .catch(() => {
+          this.loading = false
+        })
+    }
+  }
+}
+</script>
+{{/if}}

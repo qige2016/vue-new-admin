@@ -1,0 +1,106 @@
+{{#if addedit}}
+<template>
+  <Dialog
+    :type="type"
+    :outer-visible="outerVisible"
+    :title="titleMap[type]"
+    width="460px"
+    v-on="$listeners"
+    @submit="submit"
+    @outerOpen="outerOpen"
+  >
+    <Form
+      ref="form"
+      :form="currentForm"
+      :form-items="formItems"
+      :rules="rules"
+    />
+  </Dialog>
+</template>
+
+<script>
+{{#if formValidate}}
+import formValidate from '@/utils/validate'
+{{/if}}
+import { add{{ properCase name }}, edit{{ properCase name }} } from '@/api/{{ name }}'
+import Dialog from '@/components/Dialog'
+import Form from '@/components/Form'
+export default {
+  name: '{{ properCase name }}AddEdit',
+  components: { Form, Dialog },
+  props: {
+    type: {
+      type: String,
+      required: true
+    },
+    outerVisible: {
+      type: Boolean,
+      required: true
+    },
+    form: {
+      type: Object,
+      required: true
+    }
+  },
+  data() {
+    return {
+      uuid: '',
+      currentForm: {},
+      formItems: [],
+      rules: {},
+      titleMap: {
+        add: '新增',
+        edit: '编辑'
+      }
+    }
+  },
+  methods: {
+    outerOpen() {
+      this.$nextTick(() => {
+        this.$refs.form.clearValidate()
+      })
+      if (this.type === 'add') {
+        this.currentForm = {}
+      } else if (this.type === 'edit') {
+        const data = this.form
+        this.uuid = this.form.orgUUID
+        this.currentForm = data
+      }
+    },
+    refresh() {
+      this.$emit('refresh')
+    },
+    submit() {
+      this.$refs.form.validate(valid => {
+        if (!valid) {
+          return
+        }
+        if (this.type === 'add') {
+          add{{ properCase name }}(this.currentForm)
+            .then(() => {
+              this.$message({
+                type: 'success',
+                showClose: true,
+                message: '新增成功'
+              })
+              this.refresh()
+            })
+            .catch(err => console.log(err))
+        } else if (this.type === 'edit') {
+          edit{{ properCase name }}(this.uuid, this.currentForm)
+            .then(() => {
+              this.$message({
+                type: 'success',
+                showClose: true,
+                message: '编辑成功'
+              })
+              this.refresh()
+            })
+            .catch(err => console.log(err))
+        }
+      })
+    }
+  }
+}
+</script>
+{{/if}}
