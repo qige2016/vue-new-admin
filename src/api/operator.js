@@ -22,9 +22,39 @@ export function getOperatorSelf() {
   })
 }
 // 查询管理员
-export function getOperator(params) {
+export function getOperators(params) {
   return request({
     url: '/v0/operators',
     params
+  })
+}
+// 管理员详情
+export function getOperator(uuid) {
+  return request({
+    url: `/v0/operators/${uuid}`
+  })
+}
+// 删除管理员
+export function deleteOperator(uuid, data) {
+  return request({
+    url: `/v0/operators/${uuid}/delete`,
+    method: 'post',
+    data
+  })
+}
+// 增加管理员
+export function addOperator(data) {
+  return request({
+    url: '/v0/operators',
+    method: 'post',
+    data
+  })
+}
+// 修改管理员
+export function editOperator(uuid, data) {
+  return request({
+    url: `/v0/operators/${uuid}`,
+    method: 'post',
+    data
   })
 }

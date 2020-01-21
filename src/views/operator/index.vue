@@ -15,20 +15,31 @@
       :pagination="pagination"
       @pagination-change="handlePageChange"
     />
+    <OperatorDetail :outer-visible.sync="detailVisible" :uuid="operatorUUID" />
+    <OperatorAddEdit
+      :type="type"
+      :outer-visible.sync="addEditVisible"
+      :form="addEditForm"
+      @refresh="refresh"
+    />
   </div>
 </template>
 
 <script>
 import formatter from '@/utils/format'
-import { getOperator } from '@/api/operator'
+import { getOperators, deleteOperator } from '@/api/operator'
 import Form from '@/components/Form'
 import Table from '@/components/Table'
+import OperatorDetail from './components/OperatorDetail'
+import OperatorAddEdit from './components/OperatorAddEdit'
 export default {
   name: 'Operator',
-  components: { Form, Table },
+  components: { Form, Table, OperatorDetail, OperatorAddEdit },
   data() {
     return {
-      form: {},
+      form: {
+        roleType: ''
+      },
       formItems: [
         {
           type: 'input',
@@ -59,21 +70,53 @@ export default {
           type: 'info',
           icon: 'el-icon-refresh-right',
           click: this.reset
+        },
+        {
+          label: '新增',
+          type: 'success',
+          icon: 'el-icon-plus',
+          click: this.handleAdd
         }
       ],
       tableLoading: false,
       data: [],
+      columns: [
+        { label: 'uuid', prop: 'operatorUUID' },
+        { label: '用户名', prop: 'userName' },
+        { label: '角色', prop: 'roleType', formatter },
+        { label: '申请时间', prop: 'registerTime', formatter },
+        {
+          label: '操作',
+          width: '200px',
+          buttons: [
+            {
+              type: 'text',
+              label: '详情',
+              click: this.handleDetail
+            },
+            {
+              type: 'text',
+              label: '编辑',
+              click: this.handleEdit
+            },
+            {
+              type: 'text',
+              label: '删除',
+              click: this.handleDelete
+            }
+          ]
+        }
+      ],
       pagination: {
         currentPage: 1,
         pageSize: 10
       },
       total: 0,
-      columns: [
-        { label: 'uuid', prop: 'operatorUUID' },
-        { label: '用户名', prop: 'userName' },
-        { label: '角色', prop: 'roleType', formatter },
-        { label: '申请时间', prop: 'registerTime', formatter }
-      ]
+      type: '',
+      addEditVisible: false,
+      addEditForm: {},
+      detailVisible: false,
+      operatorUUID: ''
     }
   },
   created() {
@@ -88,7 +131,7 @@ export default {
     handleOperator() {
       this.tableLoading = true
       const params = { ...this.form, ...this.pagination }
-      getOperator(params)
+      getOperators(params)
         .then(res => {
           this.tableLoading = false
           this.data = res.operatorList || []
@@ -103,7 +146,44 @@ export default {
       this.handleOperator()
     },
     reset() {
-      this.form = {}
+      this.form = {
+        roleType: ''
+      }
+    },
+    handleDetail(row) {
+      this.uuid = row.operatorUUID
+      this.detailVisible = true
+    },
+    refresh() {
+      this.addEditVisible = false
+      this.handleOperator()
+    },
+    handleAdd() {
+      this.addEditVisible = true
+      this.type = 'add'
+    },
+    handleEdit(row) {
+      this.addEditVisible = true
+      this.type = 'edit'
+      this.addEditForm = row
+    },
+    handleDelete(row) {
+      this.$confirm('确定删除吗？', {
+        type: 'warning',
+        showClose: false,
+        closeOnClickModal: false
+      })
+        .then(() => {
+          deleteOperator(row.operatorUUID).then(() => {
+            this.$message({
+              type: 'success',
+              message: '删除成功'
+            })
+            // 刷新列表
+            this.handleOperator()
+          })
+        })
+        .catch(err => console.log(err))
     }
   }
 }
