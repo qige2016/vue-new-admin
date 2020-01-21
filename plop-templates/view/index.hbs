@@ -38,7 +38,7 @@
 import formatter from '@/utils/format'
 {{/if}}
 {{#if search}}
-import { get{{ properCase name }}{{#if delete}}, delete{{ properCase name }}{{/if}} } from '@/api/{{ name }}'
+import { get{{ properCase name }}s{{#if delete}}, delete{{ properCase name }}{{/if}} } from '@/api/{{ name }}'
 import Form from '@/components/Form'
 import Table from '@/components/Table'
 {{/if}}
@@ -111,7 +111,7 @@ export default {
       type: '',
       addEditVisible: false,
       addEditForm: {}{{/if}}{{#if detail}},
-      detailVisible: '',
+      detailVisible: false,
       uuid: ''{{/if}}
     }
   },
@@ -128,7 +128,7 @@ export default {
     handle{{ properCase name }}() {
       this.tableLoading = true
       const params = { ...this.form, ...this.pagination }
-      get{{ properCase name }}(params)
+      get{{ properCase name }}s(params)
         .then(res => {
           this.tableLoading = false
           this.data = res.{{ dataName }} || []

@@ -63,7 +63,7 @@ export default {
         this.currentForm = {}
       } else if (this.type === 'edit') {
         const data = this.form
-        this.uuid = this.form.orgUUID
+        this.uuid = this.form.{{ uuid }}
         this.currentForm = data
       }
     },

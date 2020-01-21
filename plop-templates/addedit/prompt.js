@@ -10,6 +10,12 @@ module.exports = {
       validate: notEmpty('name')
     },
     {
+      type: 'input',
+      name: 'uuid',
+      message: 'uuid name please',
+      validate: notEmpty('uuid')
+    },
+    {
       type: 'checkbox',
       name: 'blocks',
       message: 'Blocks:',
@@ -35,6 +41,7 @@ module.exports = {
   ],
   actions: data => {
     const name = '{{properCase name}}'
+    const uuid = '{{uuid}}'
     const actions = [
       {
         type: 'add',
@@ -44,6 +51,7 @@ module.exports = {
         templateFile: 'plop-templates/addedit/index.hbs',
         data: {
           name: name,
+          uuid: uuid,
           addedit: data.blocks.includes('addedit'),
           formValidate: data.blocks.includes('formValidate')
         }
