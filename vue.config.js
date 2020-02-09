@@ -14,7 +14,7 @@ module.exports = {
     open: true,
     proxy: {
       '/': {
-        target: 'http://172.16.4.33:3000/mock/53',
+        target: 'http://gitlab.cmiovcd.com:3000/mock/53',
         changeOrigin: true
       }
     }
