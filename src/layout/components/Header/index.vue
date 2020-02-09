@@ -41,11 +41,13 @@ export default {
       this.$confirm('确认要退出登录吗?', {
         type: 'warning',
         showClose: false
-      }).then(() => {
-        this.$store.dispatch('manager/handleLogOut').then(() => {
-          this.$router.push('/login')
-        })
       })
+        .then(() => {
+          this.$store.dispatch('manager/handleLogOut').then(() => {
+            this.$router.push('/login')
+          })
+        })
+        .catch(err => console.log(err))
     }
   }
 }
