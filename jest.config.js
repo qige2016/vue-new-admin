@@ -20,8 +20,7 @@ module.exports = {
     'src/utils/types.js',
     'src/components/**/*.{js,vue}',
     '!src/components/VideoPlayer/index.vue',
-    '!src/components/Screenfull/index.vue',
-    '!src/components/SelectRemote/index.vue'
+    '!src/components/Screenfull/index.vue'
   ],
   coverageDirectory: '<rootDir>/tests/unit/coverage',
   collectCoverage: true,

@@ -65,9 +65,7 @@
 │  │  │      
 │  │  ├─Notification // 消息盒子
 │  │  │      
-│  │  ├─Screenfull // 全屏
-│  │  │      
-│  │  ├─SelectRemote // 远程选择
+│  │  ├─Screenfull // 全屏  
 │  │  │      
 │  │  ├─SvgIcon // icon
 │  │  │      
