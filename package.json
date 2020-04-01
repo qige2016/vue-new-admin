@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "commit": "git-cz",
     "element-theme": "et",
     "serve": "npm run element-theme && vue-cli-service serve",
     "build": "npm run element-theme && vue-cli-service build",
@@ -16,6 +17,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-push": "npm run test:unit"
     }
   },
@@ -24,6 +26,11 @@
       "eslint --fix",
       "git add"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   },
   "dependencies": {
     "axios": "0.19.0",
@@ -39,6 +46,8 @@
     "vuex": "3.0.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
     "@vue/cli-plugin-babel": "4.0.0",
     "@vue/cli-plugin-eslint": "4.0.0",
     "@vue/cli-plugin-unit-jest": "4.0.0",
@@ -47,7 +56,9 @@
     "@vue/test-utils": "1.0.0-beta.29",
     "babel-eslint": "10.0.3",
     "babel-plugin-component": "1.1.1",
+    "commitizen": "4.0.3",
     "compression-webpack-plugin": "3.0.0",
+    "cz-conventional-changelog": "3.1.0",
     "element-theme": "2.0.1",
     "element-theme-chalk": "2.13.0",
     "eslint": "5.16.0",
