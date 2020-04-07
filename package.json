@@ -11,7 +11,7 @@
     "start": "npm run serve",
     "report": "npm run element-theme && vue-cli-service build --report",
     "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit",
+    "test:unit": "npm run element-theme && vue-cli-service test:unit",
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml",
     "new": "plop"
   },
