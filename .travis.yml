@@ -6,3 +6,4 @@ cache: yarn
 script:
   - yarn lint
   - yarn test:unit
+  - bash ./deploy.sh

@@ -7,7 +7,7 @@ module.exports = {
       href: '/favicon.ico'
     }]
   ],
-  base: '/',
+  base: '/vue-new-admin/',
   themeConfig: {
     nav: [{
         text: '指南',
