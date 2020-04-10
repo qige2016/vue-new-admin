@@ -22,13 +22,10 @@ features:
 ```bash
 # 克隆项目
 git clone https://github.com/qige2016/vue-new-admin.git
-
 # 进入项目目录
 cd vue-new-admin
-
 # 安装依赖
 npm install
-
 # 启动项目
 npm run serve
 ```

@@ -1,8 +1,4 @@
----
-pageClass: getting-started
----
-
-# 介绍
+# 开始使用
 
 [vue-new-admin](https://github.com/qige2016/vue-new-admin) 是一个后台前端解决方案，它基于 [vue](https://github.com/vuejs/vue) 和 [element-ui](https://github.com/ElemeFE/element)实现。它可以帮助你快速搭建企业级中后台产品原型。
 
@@ -69,9 +65,27 @@ pageClass: getting-started
 
 ## 目录结构
 
-本项目已经为你生成了一个完整的开发框架，提供了涵盖中后台开发的各类功能和坑位，下面是整个项目的目录结构。
+本项目已经为你生成了一个完整的开发框架，下面是整个项目的目录结构。
 
 ```bash
+├── CHANGELOG.md               # changelog
+├── Dockerfile                 # docker配置
+├── README.md                  # readme
+├── babel.config.js            # babel配置
+├── commitlint.config.js       # commitlint配置
+├── docs                       # 文档
+├── element-variables.scss     # 自定义主题
+├── jest.config.js             # jest配置
+├── nginx.conf                 # nginx配置
+├── package.json               # package.json
+├── plop-templates             # 基本模板
+├── plopfile.js                # plop配置
+├── postcss.config.js          # postcss配置
+├── public                     # 公共文件
+├── src                        # 源码
+├── tests                      # 测试
+├── vue.config.js              # vue配置
+└── yarn.lock                  # yarn依赖信息
 
 ```
 

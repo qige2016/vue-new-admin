@@ -32,10 +32,25 @@ module.exports = {
     ],
     sidebar: {
       '/guide/': [{
-          title: '基础',
+          title: '入门',
           collapsable: false,
           children: [
             '/guide/'
+          ]
+        },
+        {
+          title: '构建和部署',
+          collapsable: false,
+          children: [
+            '/guide/buildDeploy/build.md',
+            '/guide/buildDeploy/deploy.md'
+          ]
+        },
+        {
+          title: '开发',
+          collapsable: false,
+          children: [
+
           ]
         },
         {
