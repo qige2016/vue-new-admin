@@ -73,6 +73,7 @@
 ├── README.md                  # readme
 ├── babel.config.js            # babel配置
 ├── commitlint.config.js       # commitlint配置
+├── deploy.sh                  # 自动更新文档脚本
 ├── docs                       # 文档
 ├── element-variables.scss     # 自定义主题
 ├── jest.config.js             # jest配置

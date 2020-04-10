@@ -50,7 +50,7 @@ module.exports = {
           title: '开发',
           collapsable: false,
           children: [
-
+            '/guide/develop/layout.md'
           ]
         },
         {
