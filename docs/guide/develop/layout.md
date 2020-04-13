@@ -1,6 +1,6 @@
 # 布局
 
-页面整体布局是一个产品最外层的框架结构，往往会包含导航、侧边栏、面包屑以及内容等。想要了解一个后台项目，先要了解它的基础布局。
+页面整体布局是一个产品最外层的框架结构，往往会包含导航、菜单、面包屑以及内容等。想要了解一个后台项目，先要了解它的基础布局。
 
 ## Layout
 在 `vue-new-admin` 中，我们抽离了使用过程中的通用布局，都放在 `layout` 目录中。
@@ -56,7 +56,7 @@ import Layout from '@/layout'
 
 <br>
 
-## app-main
+## AppMain
 
 ::: tip 对应代码
 [@/layout/components/AppMain](https://github.com/qige2016/vue-new-admin/blob/master/src/layout/components/AppMain.vue)
