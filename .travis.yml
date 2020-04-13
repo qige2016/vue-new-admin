@@ -4,6 +4,7 @@ node_js:
 install: yarn
 cache: yarn
 script:
+  - yarn lint
   - yarn test:unit
 after_success:
   - bash ./deploy.sh
