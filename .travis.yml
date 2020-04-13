@@ -6,4 +6,6 @@ cache: yarn
 script:
   - yarn lint
   - yarn test:unit
-  - bash ./deploy.sh
+deploy:
+  provider: script
+  script: deploy.sh
