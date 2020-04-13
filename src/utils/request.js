@@ -8,6 +8,8 @@ import router from '@/router'
 
 const isSign = false // 开启关闭sign签名验证
 const securityKey = '' // 后端提供安全码
+let hasLogoutStatus = false //token超时，或者登录超时
+
 
 // 错误提示信息
 const tipText = {
@@ -61,7 +63,37 @@ const errorHandler = error => {
     }
   }
 }
-
+// 请求队列
+const queue = [];
+// axios内置的中断ajax的方法
+const cancelToken = axios.CancelToken;
+// 拼接请求的url和方法，同样的url+方法可以视为相同的请求
+const token = (config) =>{
+  return `${config.url}_${config.method}`
+}
+// 中断重复的请求，并从队列中移除
+const removeQueue = config => {
+  for (let i = 0, size = queue.length; i < size; i++) {
+    const task = queue[i];
+    if (!task) return;
+    // 退出接口跳过中断逻辑
+    // 出现401，403状态码中断后续请求
+    const isLog = token(config).includes('logout') || token(config).includes('login');
+    if (!isLog && hasLogoutStatus) {
+      task.token();
+      queue.splice(i, 1);
+    } else {
+      const cancelMethods = ['post', 'put', 'delete']; // 需要中断的请求方式
+      const { method } = config;
+      if (cancelMethods.includes(method)) {
+        if (task.token === token(config)) {
+          task.cancel();
+          queue.splice(i, 1);
+        }
+      }
+    }
+  }
+}
 // create an axios instance
 const service = axios.create({
   baseURL: '/',
@@ -92,6 +124,11 @@ const illegalHandler = (data, config) => {
 // request interceptor
 service.interceptors.request.use(
   config => {
+    removeQueue(config); // 中断之前的同名请求
+    // 添加cancelToken
+    config.cancelToken = new cancelToken((c)=>{
+        queue.push({ token: token(config), cancel: c });
+    })
     // token
     if (localStorage.getItem('LG_TK')) {
       config.headers['token'] = localStorage.getItem('LG_TK')
@@ -130,12 +167,15 @@ service.interceptors.request.use(
 // response interceptor
 service.interceptors.response.use(
   response => {
+    removeQueue(response.config)
+  //根据code码即token超时的code码设置相应的hasLogoutStatus = true or false
     return response.data
   },
   error => {
     /**
      * 通过 xmlhttprequest 来状态码标识error
      */
+    //hasLogoutStatus = false
     // 异常处理
     errorHandler(error)
     return Promise.reject(error)
