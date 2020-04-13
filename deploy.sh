@@ -13,6 +13,8 @@ cd docs/.vuepress/dist
 touch .nojekyll
 
 git init
+git config --global user.name "${U_NAME}"
+git config --global user.email "${U_EMAIL}"
 git add -A
 git commit -m 'deploy'
 
