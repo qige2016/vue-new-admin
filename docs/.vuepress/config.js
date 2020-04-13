@@ -50,7 +50,8 @@ module.exports = {
           title: '开发',
           collapsable: false,
           children: [
-            '/guide/develop/layout.md'
+            '/guide/develop/layout.md',
+            '/guide/develop/router-and-menu.md'
           ]
         },
         {
