@@ -16,7 +16,7 @@ git init
 git config --global user.name "${U_NAME}"
 git config --global user.email "${U_EMAIL}"
 git add -A
-git commit -m 'deploy'
+git commit -am 'deploy'
 
 git push -f "https://${GH_TOKEN}@github.com/qige2016/vue-new-admin.git" master:gh-pages
 
