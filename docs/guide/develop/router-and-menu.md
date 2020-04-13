@@ -48,7 +48,7 @@ meta: {
 菜单是通过读取路由并结合权限判断而动态生成的，而且还需要支持路由无限嵌套，所以这里还使用到了递归组件。
 
 ::: tip 代码地址
-[@/views/layout/components/Menu](https://github.com/qige2016/vue-new-admin/tree/master/src/layout/components/Menu)
+[@/layout/components/Menu](https://github.com/qige2016/vue-new-admin/tree/master/src/layout/components/Menu)
 :::
 
 一般菜单有两种形式即：submenu 和 直接 el-menu-item。 一个是嵌套子菜单，另一个则是直接一个菜单。当你一个路由下面的 `children` 声明的路由大于>1 个时，自动会变成嵌套的模式；如果子路由正好等于一个就会默认将子路由作为根路由显示在菜单中，此时主路由`path`也为`''`。
