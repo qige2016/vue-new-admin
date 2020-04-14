@@ -14,10 +14,10 @@
 
 **asyncRoutes：** 代表那些需求动态判断权限并通过 `addRoutes` 动态添加的页面。
 
-具体的会在 [权限管理](permission.md) 页面介绍。
+具体的会在 [权限管理](/guide/advanced/permission.html) 页面介绍。
 
 ::: tip
-这里所有的路由页面都使用 `路由懒加载` 了 ，具体介绍见[路由懒加载](/zh/guide/advanced/lazy-loading.html)
+这里所有的路由页面都使用 `路由懒加载` 了 ，具体介绍见[路由懒加载](/guide/advanced/lazy-loading.html)
 :::
 
 其它的配置和 [vue-router](https://router.vuejs.org/zh-cn/) 官方文档一样。

@@ -63,14 +63,21 @@ module.exports = {
           title: '进阶',
           collapsable: false,
           children: [
-
+            '/guide/advanced/eslint-prettier.md',
+            '/guide/advanced/commitizen-commitlint-changelog.md',
+            '/guide/advanced/git-hook.md',
+            '/guide/advanced/style-guide.md',
+            '/guide/advanced/lazy-loading.md',
+            '/guide/advanced/icon.md',
+            '/guide/advanced/error.md',
+            '/guide/advanced/permission.md'
           ]
         },
         {
           title: '其它',
           collapsable: false,
           children: [
-
+            '/guide/other/reference.md',
           ]
         }
       ]

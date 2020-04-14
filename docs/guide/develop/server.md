@@ -71,7 +71,3 @@ export function getOperators(params) {
   })
 }
 ```
-
-## 从 mock 直接切换到服务端请求
-
-见[ Mock 和联调](mock-api.md)
