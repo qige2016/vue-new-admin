@@ -69,6 +69,7 @@ module.exports = {
             '/guide/advanced/style-guide.md',
             '/guide/advanced/lazy-loading.md',
             '/guide/advanced/icon.md',
+            '/guide/advanced/test.md',
             '/guide/advanced/error.md',
             '/guide/advanced/permission.md'
           ]

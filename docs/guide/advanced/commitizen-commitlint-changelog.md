@@ -57,7 +57,7 @@ package.json中配置:
 },
  "config": {
     "commitizen": {
-      "path": "node_modules/cz-conventional-changelog"
+      "path": "cz-conventional-changelog"
     }
   }
 ```
