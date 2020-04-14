@@ -51,7 +51,12 @@ module.exports = {
           collapsable: false,
           children: [
             '/guide/develop/layout.md',
-            '/guide/develop/router-and-menu.md'
+            '/guide/develop/router-and-menu.md',
+            '/guide/develop/new.md',
+            '/guide/develop/style.md',
+            '/guide/develop/server.md',
+            '/guide/develop/import.md',
+            '/guide/develop/mock-api.md'
           ]
         },
         {

@@ -86,7 +86,6 @@
 ├── tests                      # 测试
 ├── vue.config.js              # vue配置
 └── yarn.lock                  # yarn依赖信息
-
 ```
 
 ## 如何开始
