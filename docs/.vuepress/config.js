@@ -56,7 +56,8 @@ module.exports = {
             '/guide/develop/style.md',
             '/guide/develop/server.md',
             '/guide/develop/import.md',
-            '/guide/develop/mock-api.md'
+            '/guide/develop/mock-api.md',
+            '/guide/develop/mixins.md'
           ]
         },
         {
