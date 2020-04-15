@@ -111,6 +111,7 @@ npm run serve
 
 Windows 用户若安装不成功，很大概率是`node-sass`安装失败，自行解决。
 
+注意：我们使用 yarn 进行依赖版本的锁定，使用 npm install 安装依赖可能失去版本信息。
 :::
 
 <br/>
