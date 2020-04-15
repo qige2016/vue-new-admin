@@ -78,7 +78,9 @@ module.exports = {
           title: '其它',
           collapsable: false,
           children: [
-            '/guide/other/reference.md',
+            '/guide/other/faq.md',
+            '/guide/other/contribute.md',
+            '/guide/other/reference.md'
           ]
         }
       ]
