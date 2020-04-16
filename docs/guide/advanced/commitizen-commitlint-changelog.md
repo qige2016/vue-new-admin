@@ -81,7 +81,7 @@ module.exports = {
 ```
 ## Conventional-changelog: 自动生成 CHANGELOG
 
-通过以上工具的帮助, 我们的工程 commit message 应该是符合 Angular 团队那套, 这样也便于我们自动生成 CHANGELOG.md
+通过以上工具的帮助, 我们的工程 commit message 应该是符合 Angular 团队那套规范, 这样也便于我们自动生成 CHANGELOG.md
 
 package.json 配置:
 
